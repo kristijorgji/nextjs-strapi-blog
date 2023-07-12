@@ -1,7 +1,14 @@
 module.exports = {
     root: true,
     parser: '@typescript-eslint/parser',
-    extends: ['next/core-web-vitals', 'prettier', 'eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+    extends: [
+        'next/core-web-vitals',
+        'prettier',
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        // Prettier plugin and recommended rules
+        'plugin:prettier/recommended',
+    ],
     rules: {
         'import/order': [
             'error',
@@ -33,5 +40,9 @@ module.exports = {
                 ignoreDeclarationSort: true,
             },
         ],
+        // Include .prettierrc.js rules
+        'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
     },
 };
