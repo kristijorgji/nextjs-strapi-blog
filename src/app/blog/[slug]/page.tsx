@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import PostsService from '@/c/services/PostsService';
+import PostsService, { GetPostsSlugsPagePaginatedResponse } from '@/c/services/PostsService';
 
 type RouteParams = { slug: string };
 
@@ -27,7 +27,17 @@ export default async function Page({ params }: { params: RouteParams }) {
 }
 
 export async function generateStaticParams() {
-    return await PostsService.instance.getSlugs();
+    let currentPage = 1;
+    let r: GetPostsSlugsPagePaginatedResponse | undefined;
+
+    const pageParams: { slug: string }[] = [];
+
+    do {
+        r = await PostsService.instance.getSlugs(currentPage);
+        pageParams.push(...r.slugs);
+    } while (currentPage++ <= r!.meta.pagination.pageCount);
+
+    return pageParams;
 }
 
 export async function generateMetadata({ params }: { params: RouteParams }): Promise<Metadata> {

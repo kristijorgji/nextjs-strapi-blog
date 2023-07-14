@@ -1,26 +1,21 @@
-import Link from 'next/link';
-
+import Blog from '@/c/components/Blog/Blog';
 import PostsService from '@/c/services/PostsService';
 
-import styles from './page.module.css';
+import styles from './page.module.scss';
 
 export default async function Page() {
-    const posts = await PostsService.instance.getPosts();
+    const r = await PostsService.instance.getPosts(1);
 
     return (
         <main className={styles.main}>
             <div>Hello to my NextJS + Strapi Blog</div>
-            <div className={styles.grid}>
-                {posts.map((post) => (
-                    <Link key={post.id} href={`blog/${post.attributes.slug}`}>
-                        <div className={styles.card}>
-                            <h1>Post {post.id}</h1>
-                            <p>{post.attributes.title}</p>
-                            <p>{post.attributes.content}</p>
-                        </div>
-                    </Link>
-                ))}
-            </div>
+            <Blog
+                posts={r.data}
+                pagination={{
+                    currentPage: 1,
+                    totalPages: r.meta.pagination.pageCount,
+                }}
+            />
         </main>
     );
 }

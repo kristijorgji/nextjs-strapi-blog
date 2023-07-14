@@ -7,16 +7,18 @@ export type StrapiCollection<T> = {
     data: StrapiEntity<T>[];
 };
 
+export type PagePaginationMeta = {
+    pagination: {
+        page: number;
+        pageSize: number;
+        pageCount: number;
+        total: number;
+    };
+};
+
 export type StrapiPagePaginatedResponse<T> = {
     data: StrapiEntity<T>[];
-    meta: {
-        pagination: {
-            page: number;
-            pageSize: number;
-            pageCount: number;
-            total: number;
-        };
-    };
+    meta: PagePaginationMeta;
 };
 
 export type Category = {

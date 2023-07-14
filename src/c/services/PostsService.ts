@@ -1,7 +1,12 @@
 import qs from 'qs';
 
 import { strapiApi } from '@/c/api/strapiApi';
-import { Post, StrapiEntity, StrapiPagePaginatedResponse } from '@/c/api/types';
+import { PagePaginationMeta, Post, StrapiEntity, StrapiPagePaginatedResponse } from '@/c/api/types';
+
+export type GetPostsSlugsPagePaginatedResponse = {
+    slugs: { slug: string }[];
+    meta: PagePaginationMeta;
+};
 
 export default class PostsService {
     private static _instance: PostsService;
@@ -12,23 +17,39 @@ export default class PostsService {
         return this._instance || (this._instance = new this());
     }
 
-    async getPosts(): Promise<StrapiEntity<Post>[]> {
+    async getPosts(page: number): Promise<StrapiPagePaginatedResponse<Post>> {
         const urlParamsObject = {
             populate: ['categories', 'tags', 'seo'],
+            pagination: {
+                page: page,
+            },
         };
         const queryString = qs.stringify(urlParamsObject, {
             arrayFormat: 'comma',
         });
 
-        return (await strapiApi.getJson<StrapiPagePaginatedResponse<Post>>(`/api/posts?${queryString}`)).data;
+        return await strapiApi.getJson<StrapiPagePaginatedResponse<Post>>(`/api/posts?${queryString}`);
     }
 
-    async getSlugs(): Promise<{ slug: string }[]> {
-        return (await strapiApi.getJson<StrapiPagePaginatedResponse<Post>>(`/api/posts?fields[0]=slug`)).data.map(
-            (post) => ({
+    async getSlugs(page: number): Promise<GetPostsSlugsPagePaginatedResponse> {
+        const urlParamsObject = {
+            fields: ['slug'],
+            pagination: {
+                page: page,
+            },
+        };
+        const queryString = qs.stringify(urlParamsObject, {
+            arrayFormat: 'indices',
+        });
+
+        const r = await strapiApi.getJson<StrapiPagePaginatedResponse<Post>>(`/api/posts?${queryString}`);
+
+        return {
+            slugs: r.data.map((post) => ({
                 slug: post.attributes.slug,
-            })
-        );
+            })),
+            meta: r.meta,
+        };
     }
 
     async getPostFromSlug(slug: string): Promise<StrapiEntity<Post>> {
