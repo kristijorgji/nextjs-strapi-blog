@@ -1,0 +1,125 @@
+.navbar {
+    --header-bg-color: #ffffff;
+    --header-hover-color: #2CA6D8;
+    --border-right: rgba(0, 0, 0, 0.1)  1px solid;
+}
+
+[data-theme="dark"] .navbar {
+    --header-bg-color: #000000;
+    --header-hover-color: #2CA6D8;
+    --border-right: rgba(255, 255, 255, 0.25)  1px solid;
+}
+
+.navbar {
+    z-index: 10000;
+
+    list-style-type: none;
+    position: fixed;
+    width: 100%;
+    background-color: var(--header-bg-color);
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+
+    li {
+        float: left;
+        list-style-type: none;
+
+    }
+
+    li i.fa-caret-right {
+        position: absolute;
+        right: 5%;
+    }
+
+    li a {
+        display: block;
+        font-size: 1em;
+        font-weight: bold;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none !important;
+        color:currentColor !important;
+
+    }
+}
+
+.navbar > li {
+    border-right: var(--border-right)
+}
+
+.navbar > li:last-child  {
+    margin-right: 0;
+    margin-left: auto;
+    border-left: none;
+    border-right: none;
+
+    &:hover {
+        background: none;
+    }
+}
+
+.navbar li:hover,
+.nestlist li:hover,
+li.active {
+    background: var(--header-hover-color);
+    color: white;
+}
+
+*:focus-within > .nestlist {
+    display: flex;
+
+}
+
+.nestlist {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--header-bg-color);
+    text-align: left;
+    padding-left: 0;
+    min-width: 20rem;
+    display:none;
+    top: 125%;
+}
+
+.nestlist li a {
+
+    text-align: left;
+
+}
+
+.nestlist li {
+
+    border-bottom: lightgray 1px solid;
+    position:relative;
+
+}
+
+.nestlist.inner{
+    left: 103%;
+    top:0;
+}
+
+.nestlist::before{
+    content: "";
+    display: block;
+    width:0;
+    height: 0;
+    top: -2%;
+    left: 10%;
+    right:0;
+    position: absolute;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid var(--header-bg-color);
+}
+
+.nestlist.inner::before {
+    top: 8%;
+    left: -2%;
+    border-left: none;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid var(--header-bg-color);
+}

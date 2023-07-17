@@ -16,7 +16,7 @@ const Pagination: React.FC<Props> = (p) => {
             <ul>
                 <li
                     className={classNames({
-                        disabled: p.currentPage === 1,
+                        [styles['disabled']]: p.currentPage === 1,
                     })}
                 >
                     {p.currentPage === 1 && <span>&laquo;</span>}
@@ -38,7 +38,7 @@ const Pagination: React.FC<Props> = (p) => {
 
                     if (willShowGoToStart) {
                         items.push(
-                            <li key={'p...'} className={classNames({ disabled: true })}>
+                            <li key={'p...'} className={classNames({ [styles['disabled']]: true })}>
                                 <span>{'...'}</span>
                             </li>
                         );
@@ -58,7 +58,7 @@ const Pagination: React.FC<Props> = (p) => {
 
                     if (willShowGoToEnd) {
                         items.push(
-                            <li key={'n...'} className={classNames({ disabled: true })}>
+                            <li key={'n...'} className={classNames({ [styles['disabled']]: true })}>
                                 <span>{'...'}</span>
                             </li>
                         );
@@ -70,7 +70,7 @@ const Pagination: React.FC<Props> = (p) => {
                     return items;
                 })()}
 
-                <li className={classNames({ disabled: p.currentPage === p.totalPages })}>
+                <li className={classNames({ [styles['disabled']]: p.currentPage === p.totalPages })}>
                     {p.currentPage === p.totalPages && <span>&raquo;</span>}
                     {p.currentPage < p.totalPages && (
                         <p.paginationLink page={p.currentPage + 1} rel={'next'}>

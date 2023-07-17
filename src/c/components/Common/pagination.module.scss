@@ -7,12 +7,14 @@
   }
 
   li {
+    cursor: pointer;
     display: inline;
     float: left;
     padding: 8px 16px;
+    margin: 0 2px;
     text-decoration: none;
     transition: background-color .3s;
-
+    border-radius: 5px;
 
     &.active {
       background-color: #4CAF50;
@@ -20,9 +22,12 @@
       border-radius: 5px;
     }
 
-    &:hover:not(.active) {
+    &:hover:not(.active,.disabled) {
       background-color: #ddd;
-      border-radius: 5px;
+    }
+
+    &.disabled {
+      cursor: not-allowed;
     }
   }
 }

@@ -2,13 +2,15 @@ import { Metadata } from 'next';
 
 import PostsService, { GetPostsSlugsPagePaginatedResponse } from '@/c/services/PostsService';
 
+import styles from './blog-post.module.scss';
+
 type RouteParams = { slug: string };
 
 export default async function Page({ params }: { params: RouteParams }) {
     const post = await PostsService.instance.getPostFromSlug(params.slug);
 
     return (
-        <main>
+        <main className={styles.post}>
             <h1>{post.attributes.title}</h1>
             <p>
                 Categories:{' '}

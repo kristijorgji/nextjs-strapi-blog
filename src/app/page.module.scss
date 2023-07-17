@@ -1,9 +1,11 @@
+@import "../../src/c/styles/mixins";
+
 .main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  @include pagePadding;
   min-height: 100vh;
 }
 

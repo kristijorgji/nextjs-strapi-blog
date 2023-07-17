@@ -8,7 +8,6 @@ export default async function Page() {
 
     return (
         <main className={styles.main}>
-            <div>Hello to my NextJS + Strapi Blog</div>
             <Blog
                 posts={r.data}
                 pagination={{

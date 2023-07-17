@@ -1,0 +1,5 @@
+@import "../../../../src/c/styles/mixins";
+
+.post {
+  @include pagePadding;
+}
