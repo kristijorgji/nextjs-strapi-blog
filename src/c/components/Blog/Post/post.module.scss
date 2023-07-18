@@ -1,0 +1,138 @@
+.post {
+  --inner-bg-color: #fafafa;
+  --inside-bg-color: #fff;
+  --bottom-border-color: #eaeaea;
+  --meta-color: #666;
+}
+
+[data-theme="dark"] .post {
+  --inner-bg-color: #1e1d1d;
+  --inside-bg-color: #232222;
+  --bottom-border-color: #5f5a5a;
+  --meta-color: #a29f9f;
+}
+
+.post {
+  .breadcrumb {
+    margin-bottom: 1rem;
+    @media (max-width: 768px) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    a:hover {
+      opacity: 0.75;
+    }
+  }
+
+  .post-title {
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    @media (max-width: 768px) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  .content-box {
+    line-height: 1.6;
+    border-bottom: 1px solid var(--bottom-border-color);
+    padding: 2em 40px;
+
+    @media (max-width: 768px) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    a {
+      color: currentColor;
+      display: inline-block;
+      margin: 0 0.4em 0.3em 0;
+      white-space: nowrap;
+
+      box-shadow: 0 1px 0 0 currentColor;
+
+      &:hover {
+        box-shadow: 0 2px 0 0 rgba(216, 87, 25, .4);
+      }
+    }
+  }
+
+  .post-meta {
+    -ms-flex-align: center;
+    -ms-flex-flow: row wrap;
+    -webkit-box-align: center;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    align-items: center;
+    color: var(--meta-color);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-flow: row wrap;
+    font-size: .8em;
+    line-height: 1.6;
+    max-width: 100%;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    position: relative;
+    text-transform: uppercase;
+  }
+
+  .content-inner {
+    background-color: var(--inner-bg-color);
+
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .05);
+    padding: 10px;
+    @media (max-width: 768px) {
+      padding: 5px 0;
+    }
+  }
+
+  .content-inside {
+    background-color: var(--inside-bg-color);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1);
+  }
+
+  .btm-post-meta {
+    margin-top: 3em;
+  }
+}
+
+.entry {
+  h1 {
+    margin: 1.8em 0 1em
+  }
+
+  h2 {
+    margin: 1.6em 0 1em
+  }
+
+  h3 {
+    margin: 1.5em 0 1em
+  }
+
+  h4 {
+    margin: 1.4em 0 .9em
+  }
+
+  h5 {
+    margin: 1.3em 0 .8em
+  }
+
+  h6 {
+    margin: 1.2em 0 .8em
+  }
+
+  ul {
+    margin-bottom: 1em;
+    padding-left: 30px;
+    position: relative;
+    list-style: square;
+  }
+
+  p {
+    margin-bottom: 1em;
+  }
+}

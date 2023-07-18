@@ -4,6 +4,7 @@ window.__ThemeManager = {};
 
 (function (scope) {
     // Declarations
+    let listeners = [];
 
     scope.theme = getColorPreference();
 
@@ -11,10 +12,23 @@ window.__ThemeManager = {};
         scope.theme = theme;
         localStorage.setItem(themeStorageKey, theme);
         reflectPreference();
+        for (let i = 0; i < listeners.length; i++) {
+            listeners[i](theme);
+        }
     };
 
     scope.toggleTheme = () => {
         scope.setPreference(scope.theme === 'light' ? 'dark' : 'light');
+    }
+
+    scope.getTheme = getColorPreference;
+
+    scope.addListener = (cb) => {
+        listeners.push(cb);
+    }
+
+    scope.removeListener = (cb) => {
+        listeners = listeners.filter(el => el !== cb);
     }
 
     const reflectPreference = () => {

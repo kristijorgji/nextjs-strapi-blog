@@ -5,6 +5,7 @@ import Link from 'next/link';
 import styles from '@/app/page.module.scss';
 import { Post, StrapiEntity } from '@/c/api/types';
 import Pagination from '@/c/components/Common/Pagination';
+import { trimEllip } from '@/c/utils/text';
 
 interface Props {
     posts: StrapiEntity<Post>[];
@@ -23,7 +24,7 @@ const Blog: React.FC<Props> = (p) => {
                         <div className={styles.card}>
                             <h1>Post {post.id}</h1>
                             <p>{post.attributes.title}</p>
-                            <p>{post.attributes.content}</p>
+                            <p>{trimEllip(post.attributes.content, 200)}</p>
                         </div>
                     </Link>
                 ))}

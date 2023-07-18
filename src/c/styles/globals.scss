@@ -8,7 +8,7 @@
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: 248, 248, 248;
   --background-end-rgb: 255, 255, 255;
 
   --primary-glow: conic-gradient(
@@ -114,4 +114,37 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+
+h1 {
+  font-size: 1.875em
+}
+
+h2 {
+  font-size: 1.56em
+}
+
+h3 {
+  font-size: 1.43em
+}
+
+h4 {
+  font-size: 1.34em
+}
+
+h5 {
+  font-size: 1.25em
+}
+
+h6 {
+  font-size: 1.12em
+}
+
+.screen-reader-text {
+  clip: rect(1px,1px,1px,1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
 }

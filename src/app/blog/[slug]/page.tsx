@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+import Post from '@/c/components/Blog/Post/Post';
 import PostsService, { GetPostsSlugsPagePaginatedResponse } from '@/c/services/PostsService';
 
 import styles from './blog-post.module.scss';
@@ -11,19 +12,7 @@ export default async function Page({ params }: { params: RouteParams }) {
 
     return (
         <main className={styles.post}>
-            <h1>{post.attributes.title}</h1>
-            <p>
-                Categories:{' '}
-                {post.attributes.categories.data.map((el) => (
-                    <span key={el.id}>{el.attributes.title}</span>
-                ))}
-            </p>
-            <p>
-                Tags:{' '}
-                {post.attributes.tags.data.map((el) => (
-                    <span key={el.id}>{el.attributes.name}</span>
-                ))}
-            </p>
+            <Post post={post} />
         </main>
     );
 }
@@ -46,6 +35,7 @@ export async function generateMetadata({ params }: { params: RouteParams }): Pro
     const post = await PostsService.instance.getPostFromSlug(params.slug);
 
     return {
-        title: post.attributes.title,
+        title: post.attributes.seo?.attributes.metaTitle ?? post.attributes.title,
+        description: post.attributes.seo?.attributes.metaDescription,
     };
 }

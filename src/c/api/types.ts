@@ -1,3 +1,5 @@
+type DateIso8601 = string;
+
 export type StrapiEntity<T> = {
     id: number;
     attributes: T;
@@ -37,7 +39,8 @@ export type Post = {
     categories: StrapiCollection<Category>;
     tags: StrapiCollection<Tag>;
     slug: string;
-    seo: StrapiEntity<Tag>;
+    seo?: StrapiEntity<Seo>;
+    createdAt: DateIso8601;
 };
 
 export type Seo = {

@@ -1,13 +1,13 @@
 .navbar {
     --header-bg-color: #ffffff;
     --header-hover-color: #2CA6D8;
-    --border-right: rgba(0, 0, 0, 0.1)  1px solid;
+    --border-color: rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="dark"] .navbar {
     --header-bg-color: #000000;
     --header-hover-color: #2CA6D8;
-    --border-right: rgba(255, 255, 255, 0.25)  1px solid;
+    --border-color: rgba(255, 255, 255, 0.25);
 }
 
 .navbar {
@@ -20,6 +20,7 @@
     display: flex;
     align-items: center;
     padding-left: 0;
+    border-bottom: 1px var(--border-color) solid;
 
     li {
         float: left;
@@ -45,7 +46,7 @@
 }
 
 .navbar > li {
-    border-right: var(--border-right)
+    border-right: 1px var(--border-color) solid;
 }
 
 .navbar > li:last-child  {
@@ -90,7 +91,6 @@ li.active {
 }
 
 .nestlist li {
-
     border-bottom: lightgray 1px solid;
     position:relative;
 
