@@ -11,6 +11,10 @@ interface Props {
 }
 
 const Pagination: React.FC<Props> = (p) => {
+    if (p.totalPages === 1) {
+        return null;
+    }
+
     return (
         <div className={styles.pagination}>
             <ul>

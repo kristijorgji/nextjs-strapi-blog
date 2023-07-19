@@ -22,8 +22,7 @@ const Blog: React.FC<Props> = (p) => {
                 {p.posts.map((post) => (
                     <Link key={post.id} href={`/blog/${post.attributes.slug}`}>
                         <div className={styles.card}>
-                            <h1>Post {post.id}</h1>
-                            <p>{post.attributes.title}</p>
+                            <h2>{post.attributes.title}</h2>
                             <p>{trimEllip(post.attributes.content, 200)}</p>
                         </div>
                     </Link>

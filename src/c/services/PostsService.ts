@@ -20,6 +20,7 @@ export default class PostsService {
     async getPosts(page: number): Promise<StrapiPagePaginatedResponse<Post>> {
         const urlParamsObject = {
             populate: ['categories', 'tags', 'seo'],
+            sort: ['createdAt:desc'],
             pagination: {
                 page: page,
             },
@@ -34,6 +35,7 @@ export default class PostsService {
     async getSlugs(page: number): Promise<GetPostsSlugsPagePaginatedResponse> {
         const urlParamsObject = {
             fields: ['slug'],
+            sort: ['createdAt:desc'],
             pagination: {
                 page: page,
             },
